@@ -19,16 +19,13 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun ScreenPosts(navController: NavHostController, servicio: PostApiService) {
-    // Lista observable de posts
     val listaPosts: SnapshotStateList<PostModel> = remember { mutableStateListOf() }
 
-    // Llamada a la API cuando se carga la pantalla
     LaunchedEffect(Unit) {
         val listado = servicio.getUserPosts()
         listado.forEach { listaPosts.add(it) }
     }
 
-    // Mostrar la lista
     LazyColumn {
         items(listaPosts) { item ->
             Row(modifier = Modifier.padding(8.dp)) {
@@ -60,13 +57,11 @@ fun ScreenPosts(navController: NavHostController, servicio: PostApiService) {
 fun ScreenPost(navController: NavHostController, servicio: PostApiService, id: Int) {
     var post by remember { mutableStateOf<PostModel?>(null) }
 
-    // Llamada a la API cuando entra a la pantalla de detalle
     LaunchedEffect(Unit) {
         val resultado = servicio.getUserPostById(id)
         post = resultado
     }
 
-    // Mostrar detalle del post
     Column(
         modifier = Modifier
             .padding(16.dp)

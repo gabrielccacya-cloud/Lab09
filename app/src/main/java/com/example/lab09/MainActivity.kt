@@ -1,4 +1,4 @@
-package com.example.lab09  // ⚠️ Asegúrate que coincida con tu paquete
+package com.example.lab09
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
